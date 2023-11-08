@@ -15,7 +15,7 @@ try {
     ' . $e->getMessage());
 }
 // ***************** display li ********************************
-$query = $dbMtdl->prepare("SELECT task FROM task;");
+$query = $dbMtdl->prepare("SELECT task FROM task ORDER BY date_create ASC;");
 $query->execute();
 $result = $query->fetchAll();
 // ******************* add with input ***********************
@@ -27,8 +27,7 @@ $addList->execute([
 ]);
 if ($addList->rowCount()) {
     $msg[] = 'tâche ajoutée';
-}
-};
+}};
 ?>
 <!DOCTYPE html>
 <html lang="en">
