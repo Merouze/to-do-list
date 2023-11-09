@@ -29,12 +29,6 @@ if (isset($_POST['task'])) {
     } else ($msg[] = 'impossible d\'ajouter la tâche');
     
 };
-// *******************request update*****************
-// $remove = $dbMtdl->prepare("UPDATE task 
-//             SET task_satut = 0 WHERE id_task = :id;");
-// $remove->execute();
-// $remove = $query->fetchAll();
-// ***********************request delete************
 
 ?>
 <!DOCTYPE html>
@@ -47,7 +41,8 @@ if (isset($_POST['task'])) {
     <title>My to-do</title>
 </head>
 
-<body><?php
+<body>
+    <?php
         var_dump($_SESSION)
         ?>
     <main>
@@ -83,19 +78,6 @@ if (isset($_POST['task'])) {
                 </div>
                 </div>';
                 }
-
-                // foreach ($result as $task) {
-                //     echo '<div class="list">
-                // <li class="task">
-                // <input class="checkbox" type="checkbox"> </checkbox>' . $task['task'] . '
-                // </li><div class="options">
-                // <p class="edit">✏️</p>
-                // <p class="hand_top">👍</p>
-                // <p class="hand_bottom">👎</p>
-                // <p class="delete">❌</p>
-                // </div>
-                // </div>';
-                // }
                 ?>
             </ul>
         </div>
