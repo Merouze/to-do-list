@@ -1,4 +1,6 @@
+
 <?php
+
 session_start();
 $_SESSION['myToken'] = md5(uniqid(mt_rand(), true));
 
@@ -25,6 +27,7 @@ if (isset($_POST['task'])) {
     if ($addList->rowCount()) {
         $msg[] = 'tâche ajoutée';
     } else ($msg[] = 'impossible d\'ajouter la tâche');
+    
 };
 // *******************request update*****************
 // $remove = $dbMtdl->prepare("UPDATE task 
@@ -68,20 +71,31 @@ if (isset($_POST['task'])) {
                 $query->execute();
 
                 $result = $query->fetchAll();
-
                 foreach ($result as $task) {
                     echo '<div class="list">
-                <li class="task">
+                <li class="task"><a class="class-a" href="">
                 <input class="checkbox" type="checkbox"> </checkbox>' . $task['task'] . '
-                </li>
-                <div class="options">
-                <p class="edit">✏️</p>
-                <p class="hand_top">👍</p>
-                <p class="hand_bottom">👎</p>
-                <p class="delete">❌</p>
+                </a></li><div class="options">
+                <a class="class-a" href=""><p class="edit">✏️</p></a>
+                <a class="class-a" href=""><p class="hand_top">👍</p></a>
+                <a class="class-a" href=""><p class="hand_bottom">👎</p></a>
+                <a class="class-a" href=""><p class="delete">❌</p></a>
                 </div>
                 </div>';
                 }
+
+                // foreach ($result as $task) {
+                //     echo '<div class="list">
+                // <li class="task">
+                // <input class="checkbox" type="checkbox"> </checkbox>' . $task['task'] . '
+                // </li><div class="options">
+                // <p class="edit">✏️</p>
+                // <p class="hand_top">👍</p>
+                // <p class="hand_bottom">👎</p>
+                // <p class="delete">❌</p>
+                // </div>
+                // </div>';
+                // }
                 ?>
             </ul>
         </div>
@@ -91,5 +105,3 @@ if (isset($_POST['task'])) {
 </body>
 
 </html>
-
-<a href="action.php?action=delete&id=' . $task['task'] . '$_SESSION['myToken']"><p class="delete">❌</p></a>

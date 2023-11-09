@@ -7,6 +7,10 @@
 ul {
     width: 80%;
 }
+.class-a {
+    text-decoration: none;
+    color: #fff;
+}
 
 .input-add {
     border-radius: 15px;
