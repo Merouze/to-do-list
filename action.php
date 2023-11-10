@@ -1,7 +1,11 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_task'])) {
-    $id = intval($_POST['remove_task']);
-    $remove = $dbMtdl->prepare("UPDATE task SET task_status = 1 WHERE id_task = :id");
+
+
+include "index.php";
+
+if (isset($_GET['action']) && $_GET['action'] === 'valider') {
+    $id = intval($_GET['id']);
+    $remove = $dbMtdl->prepare("UPDATE task SET task_statut = 1 WHERE id_task = :id");
     $remove->execute([
         'id' => $id
     ]);
@@ -12,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_task'])) {
         $msg[] = 'Impossible de supprimer la tâche';
     }
     
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+    header("Location: index.php" );
     exit;
 }
+?>

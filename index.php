@@ -1,5 +1,5 @@
-
 <?php
+// include "action.php";
 
 session_start();
 $_SESSION['myToken'] = md5(uniqid(mt_rand(), true));
@@ -44,7 +44,7 @@ if (isset($_POST['task'])) {
 </head>
 
 <body><?php
-        var_dump($_SESSION)
+        // var_dump($_SESSION)
         ?>
     <main>
         <div class="title">
@@ -61,22 +61,20 @@ if (isset($_POST['task'])) {
             <ul>
                 <?php
                 // ***************** display li ********************************
-                $query = $dbMtdl->prepare("SELECT task 
+                $query = $dbMtdl->prepare("SELECT task, id_task 
             FROM task WHERE task_statut = 0 ORDER BY date_create DESC;");
 
                 $query->execute();
 
                 $result = $query->fetchAll();
                 foreach ($result as $task) {
-                    echo '<div class="list">
-                    <li class="task"><a class="class-a" href="">
-                    <input class="checkbox" type="checkbox"> </checkbox></a><a class="class-a" href="">' . $task['task'] . '
-                    </a></li>
+                    echo "<div class='list'>
+                    <li class='task'><a class='class-a' href='action.php?action=valider&id={$task['id_task']}'>⭕" . $task['task'] . '</a></li>
                 <div class="options">
                 <a class="class-a" href=""><p class="edit">✏️</p></a>
                 <a class="class-a" href=""><p class="hand_top">👍</p></a>
                 <a class="class-a" href=""><p class="hand_bottom">👎</p></a>
-                <a class="class-a" href=""><p class="delete">❌</p></a>
+                <a class="class-a" href="action.php?action=supp&id"><p class="delete">❌</p></a>
                 </div>
                 </div>';
                 }
