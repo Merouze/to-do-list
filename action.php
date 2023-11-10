@@ -1,11 +1,13 @@
 <?php
-
-
 include "index.php";
+// ***************** display li ********************************
+
 // ******************************* remove Li *******************
 if (isset($_GET['action']) && $_GET['action'] === 'valider') {
-    $id = intval($_GET['id']);
-    $remove = $dbMtdl->prepare("UPDATE task SET task_statut = 1 WHERE id_task = :id");
+    $id = intval(strip_tags($_GET['id']));
+    $remove = $dbMtdl->prepare("    UPDATE task 
+                                    SET task_statut = 1 
+                                    WHERE id_task = :id");
     $remove->execute([
         'id' => $id
     ]);
@@ -21,10 +23,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'valider') {
 }
 // *********************************** Delete ********************
 if (isset($_GET['action']) && $_GET['action'] === 'supp') {
-    $id = intval($_GET['id']);
-    $remove = $dbMtdl->prepare("DELETE FROM task WHERE id_task = :id");
+    $id = intval(strip_tags($_GET['id']));
+    $remove = $dbMtdl->prepare("    DELETE 
+                                    FROM task 
+                                    WHERE id_task = :id");
     $remove->execute([
-        'id' => $id
+        ':id' => $id
+
     ]);
 
     if ($remove->rowCount()) {
@@ -36,4 +41,4 @@ if (isset($_GET['action']) && $_GET['action'] === 'supp') {
     header("Location: index.php" );
     exit;
 }
-?>
+// ********************************* Move task *************************************
