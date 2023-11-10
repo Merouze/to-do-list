@@ -69,12 +69,12 @@ if (isset($_POST['task'])) {
                 $result = $query->fetchAll();
                 foreach ($result as $task) {
                     echo "<div class='list'>
-                    <li class='task'><a class='class-a' href='action.php?action=valider&id={$task['id_task']}'>⭕" . $task['task'] . '</a></li>
+                    <li class='task'><a class='class-a' href='action.php?action=valider&id={$task['id_task']}&token={$_SESSION['myToken']}'>⭕" . $task['task'] . '</a></li>
                 <div class="options">
                 <a class="class-a" href=""><p class="edit">✏️</p></a>
                 <a class="class-a" href=""><p class="hand_top">👍</p></a>
                 <a class="class-a" href=""><p class="hand_bottom">👎</p></a>
-                <a class="class-a" href="action.php?action=supp&id"><p class="delete">❌</p></a>
+                <a class="class-a" href="action.php?action=supp&id='.$task["id_task"].'&token='.$_SESSION["myToken"].'"><p class="delete">❌</p></a>
                 </div>
                 </div>';
                 }
