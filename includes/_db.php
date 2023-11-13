@@ -1,10 +1,15 @@
 <?php
+ 
+ try {
+    // Get environnement configuration
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
 
-try {
+    // Connect to the database
     $dbMtdl = new PDO(
-        'mysql:host=localhost;dbname=todo_list;charset=utf8',
-        'y1y1',
-        'merouze'
+        $_ENV['DB_HOST'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PWD']
     );
     $dbMtdl->setAttribute(
         PDO::ATTR_DEFAULT_FETCH_MODE,

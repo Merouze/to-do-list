@@ -1,6 +1,6 @@
 <?php
 require "../php2/vendor/autoload.php";
-include "_db.php";
+include "includes/_db.php";
 
 
 session_start();

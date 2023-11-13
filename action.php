@@ -1,6 +1,7 @@
 <?php
-include "index.php";
-include "_db.php";
+require "../php2/vendor/autoload.php";
+
+include "includes/_db.php";
 
 // ******************* add with input ***********************
 if (isset($_POST['task'])) {
@@ -19,6 +20,7 @@ if (isset($_POST['task'])) {
     } else ($msg[] = 'impossible d\'ajouter la tâche');
 
     header('Location: index.php' );
+    exit;
 };
 
 // ******************************* remove Li *******************
