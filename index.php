@@ -6,6 +6,25 @@ include "includes/_db.php";
 session_start();
 $_SESSION['myToken'] = md5(uniqid(mt_rand(), true));
 
+// ******************* add with input ***********************
+if (isset($_POST['task'])) {
+    $task = (strip_tags($_POST['task']));
+    $maxOrder = $dbMtdl->prepare("SELECT MAX(order_task) AS max_order from task");
+    $maxOrder -> execute ();
+
+    $addList = $dbMtdl->prepare("INSERT INTO `task` (`task`, `order_task`) VALUES (:task, :maxOrder)");
+    
+    $addList->execute([
+        ':task' => $task,
+        ':maxOrder' => $maxOrder->fetchColumn() + 1
+    ]);
+    if ($addList->rowCount()) {
+        $msg[] = 'tâche ajoutée';
+    } else ($msg[] = 'impossible d\'ajouter la tâche');
+
+    header('Location: index.php');
+};
+// *******************************************************************************
 ?>
 <!DOCTYPE html>
 <html lang="en">

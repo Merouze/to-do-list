@@ -1,6 +1,5 @@
 <?php
 require "../php2/vendor/autoload.php";
-
 include "includes/_db.php";
 
 // ******************* add with input ***********************
@@ -51,8 +50,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'supp') {
                                     WHERE id_task = :id");
     $remove->execute([
         ':id' => $id
-        
     ]);
+    $query = $dbMtdl->prepare("SELECT order_task FROM task WHERE id_task = :id;");
+    $query->execute(['id' => $id]);
+    $orderTask = $query->fetchcolumn();
     
     if ($remove->rowCount()) {
         $msg[] = 'Tâche effectuée';
@@ -91,14 +92,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'up') {
 if (isset($_GET['action']) && $_GET['action'] === 'down') {
     $moveUp = $dbMtdl->prepare("SELECT order_task from task");
     $moveUp -> execute ();
-    
     $id = intval(strip_tags($_GET['id']));
-    $remove = $dbMtdl->prepare("    UPDATE task 
-                                    SET order_task = order_task - 1 
-                                    WHERE id_task = :id");
-    $remove->execute([
-        'id' => $id
-    ]);
+    $remove = $dbMtdl->prepare("UPDATE task SET order_task = order_task - 1 WHERE id_task = :id");
+    $remove->execute(['id' => $id]);
     
     if ($remove->rowCount()) {
         
@@ -110,4 +106,5 @@ if (isset($_GET['action']) && $_GET['action'] === 'down') {
     header("Location: index.php" );
     exit;
 }
+
 

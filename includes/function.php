@@ -22,3 +22,33 @@
 //         );
 //     }
 // }
+
+/**
+ * Get the new priority value for a new task *
+ * @return integer|null 
+ * */
+// function getMaxPriotrity(): ?int
+//  {
+//     global $dbMtdl;
+//     $query = $dbMtdl->prepare("SELECT IFNULL (MAX(order_task),0 ) + 1 AS new-priority FROM task");
+//     $isOK = $query->execute();
+//     if ($isOK) {
+//         $query->fetchColumn();
+//     };
+//     return null;
+
+// };
+/**
+ * get the priority of the given
+ *
+ * @param integer $idTask
+ * @return integer
+ */
+// function getPriority(int $idTask): int {
+
+//     $query = $dbMtdl->prepare("SELECT order_task FROM task WHERE id_task = :id;");
+//     $query->execute(['id' => $id]);
+//     $orderTask = $query->fetchcolumn();
+// };
+
+// ?>
