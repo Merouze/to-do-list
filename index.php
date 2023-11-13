@@ -1,24 +1,11 @@
 <?php
-// include "action.php";
-require "vendor/autoload.php";
+require "../php2/vendor/autoload.php";
+include "_db.php";
+
 
 session_start();
 $_SESSION['myToken'] = md5(uniqid(mt_rand(), true));
 
-try {
-    $dbMtdl = new PDO(
-        'mysql:host=localhost;dbname=todo_list;charset=utf8',
-        'y1y1',
-        'merouze'
-    );
-    $dbMtdl->setAttribute(
-        PDO::ATTR_DEFAULT_FETCH_MODE,
-        PDO::FETCH_ASSOC
-    );
-} catch (Exception $e) {
-    die('Unable to connect to the database.
-    ' . $e->getMessage());
-}
 // ******************* add with input ***********************
 if (isset($_POST['task'])) {
     $task = (strip_tags($_POST['task']));

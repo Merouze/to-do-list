@@ -1,6 +1,5 @@
 <?php
-require "index.php";
-include "action.php";
+
 try {
     $dbMtdl = new PDO(
         'mysql:host=localhost;dbname=todo_list;charset=utf8',
